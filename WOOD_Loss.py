@@ -1,5 +1,5 @@
 import torch
-from geomloss.geomloss import SamplesLoss
+from geomloss import SamplesLoss
 from torch.autograd import Function
 
 

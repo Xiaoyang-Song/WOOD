@@ -5,7 +5,6 @@ import torchvision.datasets as datasets
 from torch.utils.data import Dataset, DataLoader
 import torch
 # Auxiliary imports
-from utils import visualize_img
 from icecream import ic
 from itertools import filterfalse
 from collections import defaultdict, Counter

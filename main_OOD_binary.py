@@ -58,7 +58,7 @@ OOD_train_loader, OOD_test_loader = data_dic[OOD_Dataset](OOD_batch_size, test_b
 
 
 ##load model
-model = DenseNet3(depth=100, num_classes=10, input_channel = C)
+model = DenseNet3(depth=100, num_classes=8, input_channel = C)
 model.to(device)
 model = nn.DataParallel(model)
 print("Let's use", torch.cuda.device_count(), "GPUs!")

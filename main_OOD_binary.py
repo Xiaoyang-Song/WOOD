@@ -39,7 +39,7 @@ OOD_batch_size = batch_size - InD_batch_size
 test_batch_size = 100
 learning_rate = 0.001
 ##parameters in loss
-num_class = torch.LongTensor([10]).to(device)
+num_class = torch.LongTensor([8]).to(device)
 
 data_dic = {
     'MNIST': MNIST,

@@ -16,7 +16,7 @@ from torch.utils.data import Dataset, DataLoader
 from sklearn.metrics import confusion_matrix
 
 
-from Model import FashionCNN, DenseNet3
+from Model import DenseNet3
 from Dataset import Fashion_MNIST, MNIST, Cifar_10, SVHN, TinyImagenet_r, \
     TinyImagenet_c, Fashion_MNIST_17, Fashion_MNIST_89
 from WOOD_Loss import NLLWOOD_Loss_v2, sink_dist_test_v2

@@ -42,6 +42,7 @@ n_cls = int(sys.argv[10])
 
 OOD_batch_size = batch_size - InD_batch_size
 OOD_batch_size = min(OOD_batch_size, n_ood * C)
+ic(f"OOD batch size: {OOD_batch_size}.")
 
 test_batch_size = 100
 learning_rate = 0.001
@@ -131,7 +132,7 @@ for epoch in range(num_epochs):
         # Initializing a gradient as 0 so there is no mixing of gradient among the batches
         optimizer.zero_grad()
 
-        #Propagating the error backward
+        # Propagating the error backward
         loss.backward()
 
         # Optimizing the parameters
@@ -142,7 +143,7 @@ for epoch in range(num_epochs):
         
         # Testing the model
         
-        if not (count % 400):    # It's same as "if count % 100 == 0"
+        if not (count % 5):    # It's same as "if count % 100 == 0"
             total = 0
             correct = 0
             InD_test_sink_dist_list = []

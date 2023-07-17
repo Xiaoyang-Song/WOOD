@@ -142,7 +142,7 @@ for epoch in range(num_epochs):
         
         
         # Testing the model
-        if epoch == num_epochs - 1:
+        if epoch == num_epochs - 1 and not (count % 2):
         # if not (count % 2):    # It's same as "if count % 100 == 0"
             total = 0
             correct = 0

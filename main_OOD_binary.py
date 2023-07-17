@@ -101,9 +101,9 @@ with open(file_name, 'a') as f:
     f.write('DenseNet 100 f ' + InD_Dataset + ' InD ' + OOD_Dataset + ' OOD experiment epoch = ' + str(num_epochs) + ' beta = ' + str(beta[0]) + ' OOD Size = ' + str(OOD_batch_size) + '\n')
 
 
-for epoch in range(num_epochs):
+for epoch in tqdm(range(num_epochs)):
     count = 0
-    for (InD_images, InD_labels), (OOD_images, OOD_labels) in tqdm(zip(InD_train_loader, cycle(OOD_train_loader))):
+    for (InD_images, InD_labels), (OOD_images, OOD_labels) in zip(InD_train_loader, cycle(OOD_train_loader)):
     #for InD_images, InD_labels in InD_train_loader:
         model.train()
         
@@ -145,7 +145,7 @@ for epoch in range(num_epochs):
         
         # Testing the model
         # if epoch == num_epochs - 1 and not (count % 2):
-        if not (count % 100):    # It's same as "if count % 100 == 0"
+        if not (count % 400):    # It's same as "if count % 100 == 0"
             total = 0
             correct = 0
             InD_test_sink_dist_list = []

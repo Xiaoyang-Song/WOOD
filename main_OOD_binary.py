@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import time
 import os
 import sys
-
+from icecream import ic
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
@@ -35,11 +35,18 @@ InD_Dataset = str(sys.argv[5])
 OOD_Dataset = str(sys.argv[6])
 C = int(sys.argv[7])
 
+# Additional cmd line arguments
+OOD_NAME = str(sys.argv[8])
+n_ood = int(sys.argv[9])
+n_cls = int(sys.argv[10])
+
 OOD_batch_size = batch_size - InD_batch_size
+OOD_batch_size = min(OOD_batch_size, n_ood)
+
 test_batch_size = 100
 learning_rate = 0.001
 ##parameters in loss
-num_class = torch.LongTensor([8]).to(device)
+num_class = torch.LongTensor([n_cls]).to(device)
 
 data_dic = {
     'MNIST': MNIST,
@@ -56,6 +63,13 @@ data_dic = {
 InD_train_loader, InD_test_loader = data_dic[InD_Dataset](InD_batch_size, test_batch_size)
 OOD_train_loader, OOD_test_loader = data_dic[OOD_Dataset](OOD_batch_size, test_batch_size)
 
+
+# Configure Path
+ood_path = os.path.join('..', 'Out-of-Distribution-GANs', 'checkpoint', 'OOD-Sample', OOD_NAME, f"OOD-Balanced-{n_ood}.pt")
+ood_data = torch.load(ood_path).to(device)
+ic(ood_data.shape)
+
+OOD_train_loader = torch.utils.data.DataLoader(ood_data, batch_size=OOD_batch_size, shuffle=True)
 
 ##load model
 model = DenseNet3(depth=100, num_classes=8, input_channel = C)

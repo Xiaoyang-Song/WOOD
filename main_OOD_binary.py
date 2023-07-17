@@ -41,7 +41,7 @@ n_ood = int(sys.argv[9])
 n_cls = int(sys.argv[10])
 
 OOD_batch_size = batch_size - InD_batch_size
-OOD_batch_size = min(OOD_batch_size, n_ood)
+OOD_batch_size = min(OOD_batch_size, n_ood * C)
 
 test_batch_size = 100
 learning_rate = 0.001
@@ -70,9 +70,9 @@ ood_data = torch.load(ood_path)
 ic(ood_data[0].shape)
 
 OOD_train_loader = torch.utils.data.DataLoader(ood_data, batch_size=OOD_batch_size, shuffle=True)
-ic(len(OOD_train_loader))
+ic(len(list(OOD_train_loader)))
 ##load model
-model = DenseNet3(depth=100, num_classes=8, input_channel = C)
+model = DenseNet3(depth=100, num_classes=n_cls, input_channel = C)
 model.to(device)
 model = nn.DataParallel(model)
 print("Let's use", torch.cuda.device_count(), "GPUs!")
@@ -82,7 +82,7 @@ print("Let's use", torch.cuda.device_count(), "GPUs!")
 ##load loss function
 NLLWOOD_l = NLLWOOD_Loss_v2.apply
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-print(model)
+# print(model)
 
 # Lists for knowing classwise accuracy
 predictions_list = []

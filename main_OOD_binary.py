@@ -36,7 +36,7 @@ OOD_Dataset = str(sys.argv[6])
 C = int(sys.argv[7])
 
 # Additional cmd line arguments
-OOD_NAME = str(sys.argv[8])
+EXP_NAME = str(sys.argv[8])
 n_ood = int(sys.argv[9])
 n_cls = int(sys.argv[10])
 
@@ -65,12 +65,12 @@ OOD_train_loader, OOD_test_loader = data_dic[OOD_Dataset](OOD_batch_size, test_b
 
 
 # Configure Path
-ood_path = os.path.join('..', 'Out-of-Distribution-GANs', 'checkpoint', 'OOD-Sample', OOD_NAME, f"OOD-Balanced-{n_ood}.pt")
-ood_data = torch.load(ood_path).to(device)
-ic(ood_data.shape)
+ood_path = os.path.join('..', 'Out-of-Distribution-GANs', 'checkpoint', 'OOD-Sample', EXP_NAME, f"OOD-Balanced-{n_ood}.pt")
+ood_data = torch.load(ood_path)
+ic(ood_data[0].shape)
 
 OOD_train_loader = torch.utils.data.DataLoader(ood_data, batch_size=OOD_batch_size, shuffle=True)
-
+ic(len(OOD_train_loader))
 ##load model
 model = DenseNet3(depth=100, num_classes=8, input_channel = C)
 model.to(device)

@@ -143,7 +143,7 @@ for epoch in range(num_epochs):
         
         # Testing the model
         
-        if not (count % 5):    # It's same as "if count % 100 == 0"
+        if not (count % 2):    # It's same as "if count % 100 == 0"
             total = 0
             correct = 0
             InD_test_sink_dist_list = []

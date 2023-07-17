@@ -66,8 +66,8 @@ OOD_train_loader, OOD_test_loader = data_dic[OOD_Dataset](OOD_batch_size, test_b
 
 # Configure Path
 ood_path = os.path.join('..', 'Out-of-Distribution-GANs', 'checkpoint', 'OOD-Sample', EXP_NAME, f"OOD-Balanced-{n_ood}.pt")
-ood_data = torch.load(ood_path)
-ic(ood_data[0].shape)
+ood_img_batch, ood_img_label = torch.load(ood_path)
+ood_data = zip(ood_img_batch, ood_img_label)
 
 OOD_train_loader = torch.utils.data.DataLoader(ood_data, batch_size=OOD_batch_size, shuffle=True)
 ##load model

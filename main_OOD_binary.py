@@ -70,7 +70,6 @@ ood_data = torch.load(ood_path)
 ic(ood_data[0].shape)
 
 OOD_train_loader = torch.utils.data.DataLoader(ood_data, batch_size=OOD_batch_size, shuffle=True)
-ic(len(list(OOD_train_loader)))
 ##load model
 model = DenseNet3(depth=100, num_classes=n_cls, input_channel = C)
 model.to(device)

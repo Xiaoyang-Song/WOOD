@@ -8,6 +8,8 @@ from icecream import ic
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
+from itertools import cycle
+from tqdm import tqdm
 torch.manual_seed(24)
 
 import torchvision
@@ -101,7 +103,7 @@ with open(file_name, 'a') as f:
 
 for epoch in range(num_epochs):
     count = 0
-    for (InD_images, InD_labels), (OOD_images, OOD_labels) in zip(InD_train_loader, OOD_train_loader):
+    for (InD_images, InD_labels), (OOD_images, OOD_labels) in tqdm(zip(InD_train_loader, cycle(OOD_train_loader))):
     #for InD_images, InD_labels in InD_train_loader:
         model.train()
         
@@ -142,8 +144,8 @@ for epoch in range(num_epochs):
         
         
         # Testing the model
-        if epoch == num_epochs - 1 and not (count % 2):
-        # if not (count % 2):    # It's same as "if count % 100 == 0"
+        # if epoch == num_epochs - 1 and not (count % 2):
+        if not (count % 100):    # It's same as "if count % 100 == 0"
             total = 0
             correct = 0
             InD_test_sink_dist_list = []

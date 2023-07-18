@@ -8,7 +8,7 @@
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --mem-per-gpu=16GB
-#SBATCH --time=144:00:00
+#SBATCH --time=36:00:00
 #SBATCH --output=/home/xysong/WOOD/slurm-jobs/WDCS16.log
 
 python3 main_OOD_binary.py 0.1 100 60 50 Cifar10 SVHN 3 CIFAR10-SVHN 16 10

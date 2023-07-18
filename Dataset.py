@@ -9,9 +9,11 @@ import os
 # external
 import custom_dataset
 from custom_dataset import *
+from custom_dataset import MNIST as CUSTOM_MNIST
+from custom_dataset import SVHN as CUSTOM_SVHN
 
 def MNIST_IND(batch_size, test_batch_size):
-    dset_tri, dset_val, _, _ = MNIST(batch_size, test_batch_size, shuffle=True)
+    dset_tri, dset_val, _, _ = CUSTOM_MNIST(batch_size, test_batch_size, shuffle=True)
     train = dset_by_class(dset_tri)
     val = dset_by_class(dset_val)
     ind = [2, 3, 6, 8, 9]
@@ -26,7 +28,7 @@ def MNIST_IND(batch_size, test_batch_size):
 
 
 def MNIST_OOD(batch_size, test_batch_size):
-    dset_tri, dset_val, _, _ = MNIST(batch_size, test_batch_size, shuffle=True)
+    dset_tri, dset_val, _, _ = CUSTOM_MNIST(batch_size, test_batch_size, shuffle=True)
     train = dset_by_class(dset_tri)
     val = dset_by_class(dset_val)
     # The following code is for within-dataset InD/OoD separation
@@ -38,7 +40,7 @@ def MNIST_OOD(batch_size, test_batch_size):
 
 
 def SVHN_07(batch_size, test_batch_size):
-    dset_tri, dset_val, _, _ = SVHN(batch_size, test_batch_size, True)
+    dset_tri, dset_val, _, _ = CUSTOM_SVHN(batch_size, test_batch_size, True)
     train = dset_by_class(dset_tri)
     val = dset_by_class(dset_val)
     ind = [0, 1, 2, 3, 4, 5, 6, 7]
@@ -53,7 +55,7 @@ def SVHN_07(batch_size, test_batch_size):
 
 
 def SVHN_89(batch_size, test_batch_size):
-    dset_tri, dset_val, _, _ = SVHN(batch_size, test_batch_size, True)
+    dset_tri, dset_val, _, _ = CUSTOM_SVHN(batch_size, test_batch_size, True)
     train = dset_by_class(dset_tri)
     val = dset_by_class(dset_val)
     # The following code is for within-dataset InD/OoD separation

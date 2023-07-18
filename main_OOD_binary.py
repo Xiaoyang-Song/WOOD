@@ -98,8 +98,8 @@ best_tpr95 = 0
 best_tpr99 = 0
 best_then01_dist = 1
 
-with open(file_name, 'w') as f:
-    f.write('DenseNet 100 f ' + InD_Dataset + ' InD ' + OOD_Dataset + ' OOD experiment epoch = ' + str(num_epochs) + ' beta = ' + str(beta[0]) + ' OOD Size = ' + str(OOD_batch_size) + '\n')
+f = open(file_name, 'w')
+f.write('DenseNet 100 f ' + InD_Dataset + ' InD ' + OOD_Dataset + ' OOD experiment epoch = ' + str(num_epochs) + ' beta = ' + str(beta[0]) + ' OOD Size = ' + str(OOD_batch_size) + '\n')
 
 tpr95_lst = []
 tpr99_lst = []
@@ -219,8 +219,7 @@ for mc_num in range(mc):
                 log = "Epoch: {}, Iteration: {}, Loss: {}, Accuracy: {}%, InD_sink: {}, OOD_sink: {}, OOD_95_TPR: {}, OOD_99_TPR: {}".format(epoch, count, loss[0], accuracy, InD_sink_mean, OOD_sink_mean, tpr95, tpr99)
                 print(log)
 
-                with open(file_name, 'w') as f:
-                    f.write(log+'\n')
+                f.write(log+'\n')
                 
                 if tpr99 >= best_tpr99:
                     best_tpr99 = tpr99

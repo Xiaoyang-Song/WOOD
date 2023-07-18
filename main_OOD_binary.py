@@ -37,7 +37,7 @@ InD_Dataset = str(sys.argv[5])
 OOD_Dataset = str(sys.argv[6])
 C = int(sys.argv[7])
 
-# Additional cmd line arguments
+# Additional cmd line arguments processing
 EXP_NAME = str(sys.argv[8])
 n_ood = int(sys.argv[9])
 n_cls = int(sys.argv[10])
@@ -60,7 +60,6 @@ data_dic = {
     'Imagenet_c': TinyImagenet_c,
     'FashionMNIST-17': Fashion_MNIST_17,
     'FashionMNIST-89': Fashion_MNIST_89
-
 }
 
 InD_train_loader, InD_test_loader = data_dic[InD_Dataset](InD_batch_size, test_batch_size)
@@ -90,9 +89,10 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 predictions_list = []
 labels_list = []
 
-file_root = './runs/' + time.strftime("%Y%m%d-%H%M%S") + '/'
-os.mkdir(file_root)
-file_name = file_root + 'log.txt'
+file_root = './runs/' + f"{EXP_NAME}" + '/'
+os.makedirs(file_root, exist_ok=True)
+file_name = file_root + f'log-{n_ood}.txt'
+
 best_test_acc = 0
 best_OOD_dist = 1
 best_then01_dist = 1
@@ -145,7 +145,7 @@ for epoch in tqdm(range(num_epochs)):
         
         # Testing the model
         # if epoch == num_epochs - 1 and not (count % 2):
-        if not (count % 400):    # It's same as "if count % 100 == 0"
+        if not (count % 800):    # It's same as "if count % 100 == 0"
             total = 0
             correct = 0
             InD_test_sink_dist_list = []
@@ -197,22 +197,30 @@ for epoch in tqdm(range(num_epochs)):
             
             OOD_test_mean_sink_dist = np.concatenate(OOD_test_sink_dist_list, axis=0)
             OOD_sink_mean = np.mean(OOD_test_mean_sink_dist)
-            thresh = np.quantile(InD_test_mean_sink_dist, 0.95)
-            fpr = OOD_test_mean_sink_dist[OOD_test_mean_sink_dist<=thresh].shape[0] / float(OOD_test_mean_sink_dist.shape[0])
-            thresh = float(format(thresh, '.4g'))
-            fpr = float(format(fpr, '.4g'))
+            # 0.95 TNR
+            thresh95 = np.quantile(InD_test_mean_sink_dist, 0.95)
+            tpr95 = 1 - OOD_test_mean_sink_dist[OOD_test_mean_sink_dist<=thresh95].shape[0] / float(OOD_test_mean_sink_dist.shape[0])
+            thresh95 = float(format(thresh95, '.4g'))
+            tpr95 = float(format(tpr95, '.4g'))
+
+                        # 0.95 TNR
+            thresh99 = np.quantile(InD_test_mean_sink_dist, 0.99)
+            tpr99 = 1 - OOD_test_mean_sink_dist[OOD_test_mean_sink_dist<=thresh99].shape[0] / float(OOD_test_mean_sink_dist.shape[0])
+            thresh99 = float(format(thresh99, '.4g'))
+            tpr99 = float(format(tpr99, '.4g'))
+
             accuracy = float(format(accuracy, '.4g'))
             
-            log = "Epoch: {}, Iteration: {}, Loss: {}, Accuracy: {}%, InD_sink: {}, InD_95_thresh: {}, OOD_sink: {}, OOD_95_FPR: {}".format(epoch, count, loss[0], accuracy, InD_sink_mean, thresh, OOD_sink_mean, fpr)
+            log = "Epoch: {}, Iteration: {}, Loss: {}, Accuracy: {}%, InD_sink: {}, OOD_sink: {}, OOD_95_TPR: {}, OOD_99_TPR: {}".format(epoch, count, loss[0], accuracy, InD_sink_mean, OOD_sink_mean, tpr95, tpr99)
             print(log)
 
             with open(file_name, 'a') as f:
                 f.write(log+'\n')
-            if fpr <= best_OOD_dist:
+            if tpr95 <= best_OOD_dist:
                 
-                best_OOD_dist = fpr
+                best_OOD_dist = tpr95
                 torch.save(model.state_dict(), '%s/OOD_model_%s_%s.t7' % (file_root, str(accuracy).split('.')[0], 
-                                                                          str(fpr).split('.')[1]))
+                                                                          str(tpr95).split('.')[1]))
             
             
 

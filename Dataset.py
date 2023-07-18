@@ -10,6 +10,59 @@ import os
 import custom_dataset
 from custom_dataset import *
 
+def MNIST_IND(batch_size, test_batch_size):
+    dset_tri, dset_val, _, _ = MNIST(batch_size, test_batch_size, shuffle=True)
+    train = dset_by_class(dset_tri)
+    val = dset_by_class(dset_val)
+    ind = [2, 3, 6, 8, 9]
+            # The following code is for within-dataset InD/OoD separation
+    ind_train = form_ind_dsets(train , ind)
+    ind_val = form_ind_dsets(val, ind)
+    ind_train = relabel_tuples(ind_train, ind, np.arange(len(ind)))
+    ind_val = relabel_tuples(ind_val, ind, np.arange(len(ind)))
+    ind_train_loader = set_to_loader(ind_train, batch_size, True)
+    ind_val_loader = set_to_loader(ind_val, test_batch_size, True)
+    return ind_train_loader, ind_val_loader
+
+
+def MNIST_OOD(batch_size, test_batch_size):
+    dset_tri, dset_val, _, _ = MNIST(batch_size, test_batch_size, shuffle=True)
+    train = dset_by_class(dset_tri)
+    val = dset_by_class(dset_val)
+    # The following code is for within-dataset InD/OoD separation
+    ood_train = form_ind_dsets(train, [1, 7])
+    ood_val = form_ind_dsets(val, [1, 7])
+    ood_train_loader = set_to_loader(ood_train, batch_size, True)
+    ood_val_loader = set_to_loader(ood_val, test_batch_size, True)
+    return ood_train_loader, ood_val_loader
+
+
+def SVHN_07(batch_size, test_batch_size):
+    dset_tri, dset_val, _, _ = SVHN(batch_size, test_batch_size, True)
+    train = dset_by_class(dset_tri)
+    val = dset_by_class(dset_val)
+    ind = [0, 1, 2, 3, 4, 5, 6, 7]
+            # The following code is for within-dataset InD/OoD separation
+    ind_train = form_ind_dsets(train , ind)
+    ind_val = form_ind_dsets(val, ind)
+    ind_train = relabel_tuples(ind_train, ind, np.arange(len(ind)))
+    ind_val = relabel_tuples(ind_val, ind, np.arange(len(ind)))
+    ind_train_loader = set_to_loader(ind_train, batch_size, True)
+    ind_val_loader = set_to_loader(ind_val, test_batch_size, True)
+    return ind_train_loader, ind_val_loader
+
+
+def SVHN_89(batch_size, test_batch_size):
+    dset_tri, dset_val, _, _ = SVHN(batch_size, test_batch_size, True)
+    train = dset_by_class(dset_tri)
+    val = dset_by_class(dset_val)
+    # The following code is for within-dataset InD/OoD separation
+    ood_train = form_ind_dsets(train, [8, 9])
+    ood_val = form_ind_dsets(val, [8, 9])
+    ood_train_loader = set_to_loader(ood_train, batch_size, True)
+    ood_val_loader = set_to_loader(ood_val, test_batch_size, True)
+    return ood_train_loader, ood_val_loader
+
 def Fashion_MNIST_17(batch_size, test_batch_size):
     dset_tri, dset_val, _, _ = FashionMNIST(batch_size, test_batch_size, True)
     train = dset_by_class(dset_tri)

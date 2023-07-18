@@ -20,7 +20,7 @@ from sklearn.metrics import confusion_matrix
 
 from Model import DenseNet3
 from Dataset import Fashion_MNIST, MNIST, Cifar_10, SVHN, TinyImagenet_r, \
-    TinyImagenet_c, Fashion_MNIST_17, Fashion_MNIST_89
+    TinyImagenet_c, Fashion_MNIST_17, Fashion_MNIST_89, SVHN_07, SVHN_89, MNIST_IND, MNIST_OOD
 from WOOD_Loss import NLLWOOD_Loss_v2, sink_dist_test_v2
 
 
@@ -60,7 +60,11 @@ data_dic = {
     'Imagenet_r': TinyImagenet_r,
     'Imagenet_c': TinyImagenet_c,
     'FashionMNIST-17': Fashion_MNIST_17,
-    'FashionMNIST-89': Fashion_MNIST_89
+    'FashionMNIST-89': Fashion_MNIST_89,
+    'SVHN-07': SVHN_07,
+    'SVHN-89': SVHN_89,
+    'MNIST-IND': MNIST_IND,
+    'MNIST-OOD': MNIST_OOD
 }
 
 InD_train_loader, InD_test_loader = data_dic[InD_Dataset](InD_batch_size, test_batch_size)

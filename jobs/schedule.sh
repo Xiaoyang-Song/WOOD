@@ -22,7 +22,7 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 sbatch jobs/cifar10-svhn/4.sh
 sbatch jobs/cifar10-svhn/8.sh
 sbatch jobs/cifar10-svhn/16.sh
-# sbatch jobs/cifar10-svhn/32.sh
+sbatch jobs/cifar10-svhn/32.sh
 # sbatch jobs/cifar10-svhn/64.sh
 # sbatch jobs/cifar10-svhn/128.sh
 # sbatch jobs/cifar10-svhn/256.sh

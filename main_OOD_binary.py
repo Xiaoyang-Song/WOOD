@@ -44,7 +44,7 @@ n_ood = int(sys.argv[9])
 n_cls = int(sys.argv[10])
 
 OOD_batch_size = batch_size - InD_batch_size
-OOD_batch_size = min(OOD_batch_size, n_ood * n_cls)
+OOD_batch_size = min(OOD_batch_size, n_ood) # Fix this bug later
 ic(f"OOD batch size: {OOD_batch_size}.")
 
 test_batch_size = 100

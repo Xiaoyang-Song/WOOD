@@ -33,5 +33,14 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 
 
 #  MNIST-FashionMNSIT Between-Dataset Experiments
-sbatch jobs/mnist-fashionmnist/4.sh
-sbatch jobs/mnist-fashionmnist/8.sh
+# sbatch jobs/mnist-fashionmnist/4.sh
+# sbatch jobs/mnist-fashionmnist/8.sh
+sbatch jobs/mnist-fashionmnist/16.sh
+sbatch jobs/mnist-fashionmnist/32.sh
+# sbatch jobs/mnist-fashionmnist/64.sh
+# sbatch jobs/mnist-fashionmnist/128.sh
+# sbatch jobs/mnist-fashionmnist/256.sh
+# sbatch jobs/mnist-fashionmnist/512.sh
+# sbatch jobs/mnist-fashionmnist/1024.sh
+# sbatch jobs/mnist-fashionmnist/2048.sh
+# sbatch jobs/mnist-fashionmnist/4096.sh

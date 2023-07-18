@@ -89,9 +89,9 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 predictions_list = []
 labels_list = []
 
-file_root = './runs/' + f"{EXP_NAME}" + '/'
+file_root = './runs/' + f"{EXP_NAME}" + f'/{n_ood}/'
 os.makedirs(file_root, exist_ok=True)
-file_name = file_root + f'log-{n_ood}.txt'
+file_name = file_root + 'log.txt'
 
 best_test_acc = 0
 best_OOD_dist = 1
@@ -144,7 +144,6 @@ for epoch in tqdm(range(num_epochs)):
         
         
         # Testing the model
-        # if epoch == num_epochs - 1 and not (count % 2):
         if not (count % 800):    # It's same as "if count % 100 == 0"
             total = 0
             correct = 0
@@ -197,13 +196,14 @@ for epoch in tqdm(range(num_epochs)):
             
             OOD_test_mean_sink_dist = np.concatenate(OOD_test_sink_dist_list, axis=0)
             OOD_sink_mean = np.mean(OOD_test_mean_sink_dist)
+
             # 0.95 TNR
             thresh95 = np.quantile(InD_test_mean_sink_dist, 0.95)
             tpr95 = 1 - OOD_test_mean_sink_dist[OOD_test_mean_sink_dist<=thresh95].shape[0] / float(OOD_test_mean_sink_dist.shape[0])
             thresh95 = float(format(thresh95, '.4g'))
             tpr95 = float(format(tpr95, '.4g'))
 
-                        # 0.95 TNR
+            # 0.99 TNR
             thresh99 = np.quantile(InD_test_mean_sink_dist, 0.99)
             tpr99 = 1 - OOD_test_mean_sink_dist[OOD_test_mean_sink_dist<=thresh99].shape[0] / float(OOD_test_mean_sink_dist.shape[0])
             thresh99 = float(format(thresh99, '.4g'))

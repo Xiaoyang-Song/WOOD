@@ -19,10 +19,10 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 # sbatch jobs/fashionmnist/4096.sh
 
 # CIFAR10-SVHN Between-Dataset Experiments
-# sbatch jobs/cifar10-svhn/4.sh
+sbatch jobs/cifar10-svhn/4.sh
 # sbatch jobs/cifar10-svhn/8.sh
 # sbatch jobs/cifar10-svhn/16.sh
-# sbatch jobs/cifar10-svhn/32.sh
+sbatch jobs/cifar10-svhn/32.sh
 # sbatch jobs/cifar10-svhn/64.sh
 # sbatch jobs/cifar10-svhn/128.sh
 # sbatch jobs/cifar10-svhn/256.sh
@@ -33,8 +33,8 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 
 
 #  MNIST-FashionMNSIT Between-Dataset Experiments
-# sbatch jobs/mnist-fashionmnist/4.sh
-# sbatch jobs/mnist-fashionmnist/8.sh
+sbatch jobs/mnist-fashionmnist/4.sh
+sbatch jobs/mnist-fashionmnist/8.sh
 sbatch jobs/mnist-fashionmnist/16.sh
 sbatch jobs/mnist-fashionmnist/32.sh
 # sbatch jobs/mnist-fashionmnist/64.sh

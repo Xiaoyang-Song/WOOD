@@ -10,13 +10,13 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 # sbatch jobs/fashionmnist/8.sh
 # sbatch jobs/fashionmnist/16.sh
 # sbatch jobs/fashionmnist/32.sh
-# sbatch jobs/fashionmnist/64.sh
-# sbatch jobs/fashionmnist/128.sh
-# sbatch jobs/fashionmnist/256.sh
+sbatch jobs/fashionmnist/64.sh
+sbatch jobs/fashionmnist/128.sh
+sbatch jobs/fashionmnist/256.sh
 # sbatch jobs/fashionmnist/512.sh
-# sbatch jobs/fashionmnist/1024.sh
-# sbatch jobs/fashionmnist/2048.sh
-# sbatch jobs/fashionmnist/4096.sh
+sbatch jobs/fashionmnist/1024.sh
+sbatch jobs/fashionmnist/2048.sh
+sbatch jobs/fashionmnist/4096.sh
 
 # CIFAR10-SVHN Between-Dataset Experiments
 # sbatch jobs/cifar10-svhn/4.sh
@@ -37,13 +37,13 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 # sbatch jobs/mnist-fashionmnist/8.sh
 # sbatch jobs/mnist-fashionmnist/16.sh
 # sbatch jobs/mnist-fashionmnist/32.sh
-sbatch jobs/mnist-fashionmnist/64.sh
-sbatch jobs/mnist-fashionmnist/128.sh
-sbatch jobs/mnist-fashionmnist/256.sh
+# sbatch jobs/mnist-fashionmnist/64.sh
+# sbatch jobs/mnist-fashionmnist/128.sh
+# sbatch jobs/mnist-fashionmnist/256.sh
 # sbatch jobs/mnist-fashionmnist/512.sh
-sbatch jobs/mnist-fashionmnist/1024.sh
-sbatch jobs/mnist-fashionmnist/2048.sh
-sbatch jobs/mnist-fashionmnist/4096.sh
+# sbatch jobs/mnist-fashionmnist/1024.sh
+# sbatch jobs/mnist-fashionmnist/2048.sh
+# sbatch jobs/mnist-fashionmnist/4096.sh
 
 # MNIST Within-Dataset Experiments
 # sbatch jobs/mnist/4.sh

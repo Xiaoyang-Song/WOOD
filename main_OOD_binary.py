@@ -72,31 +72,11 @@ ood_img_batch, ood_img_label = torch.load(ood_path)
 ood_data = list(zip(ood_img_batch, ood_img_label))
 
 OOD_train_loader = torch.utils.data.DataLoader(ood_data, batch_size=OOD_batch_size, shuffle=True)
-##load model
-model = DenseNet3(depth=100, num_classes=n_cls, input_channel = C)
-model.to(device)
-model = nn.DataParallel(model)
-print("Let's use", torch.cuda.device_count(), "GPUs!")
-
-
-
-##load loss function
-NLLWOOD_l = NLLWOOD_Loss_v2.apply
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-# print(model)
-
-# Lists for knowing classwise accuracy
-predictions_list = []
-labels_list = []
 
 file_root = './runs/' + f"{EXP_NAME}" + f'/{n_ood}/'
 os.makedirs(file_root, exist_ok=True)
 file_name = file_root + 'log.txt'
 
-best_test_acc = 0
-best_tpr95 = 0
-best_tpr99 = 0
-best_then01_dist = 1
 
 f = open(file_name, 'w')
 f.write('DenseNet 100 f ' + InD_Dataset + ' InD ' + OOD_Dataset + ' OOD experiment epoch = ' + str(num_epochs) + ' beta = ' + str(beta[0]) + ' OOD Size = ' + str(OOD_batch_size) + '\n')
@@ -106,6 +86,25 @@ tpr99_lst = []
 mc = 3
 
 for mc_num in range(mc):
+    ##load model
+    model = DenseNet3(depth=100, num_classes=n_cls, input_channel = C)
+    model.to(device)
+    model = nn.DataParallel(model)
+    print("Let's use", torch.cuda.device_count(), "GPUs!")
+
+    ##load loss function
+    NLLWOOD_l = NLLWOOD_Loss_v2.apply
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    # print(model)
+
+    # Lists for knowing classwise accuracy
+    predictions_list = []
+    labels_list = []
+    best_test_acc = 0
+    best_tpr95 = 0
+    best_tpr99 = 0
+    best_then01_dist = 1
+
     for epoch in tqdm(range(num_epochs)):
         count = 0
         for (InD_images, InD_labels), (OOD_images, OOD_labels) in zip(InD_train_loader, cycle(OOD_train_loader)):
@@ -218,6 +217,7 @@ for mc_num in range(mc):
                 
                 log = "Epoch: {}, Iteration: {}, Loss: {}, Accuracy: {}%, InD_sink: {}, OOD_sink: {}, OOD_95_TPR: {}, OOD_99_TPR: {}".format(epoch, count, loss[0], accuracy, InD_sink_mean, OOD_sink_mean, tpr95, tpr99)
                 print(log)
+                ic(log)
 
                 f.write(log+'\n')
                 

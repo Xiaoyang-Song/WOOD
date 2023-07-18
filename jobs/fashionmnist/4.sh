@@ -11,4 +11,4 @@
 #SBATCH --time=24:00:00
 #SBATCH --output=/home/xysong/WOOD/slurm-jobs/WDFM4.log
 
-python3 main_OOD_binary.py 0.1 1 60 50 FashionMNIST-17 FashionMNIST-89 1 FashionMNIST 4 8
+python3 main_OOD_binary.py 0.1 100 60 50 FashionMNIST-17 FashionMNIST-89 1 FashionMNIST 4 8

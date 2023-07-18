@@ -25,6 +25,7 @@ from WOOD_Loss import NLLWOOD_Loss_v2, sink_dist_test_v2
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Let's use", torch.cuda.device_count(), "GPUs!")
 
 ##parameters, Fashion MNIST is in distribution dataset, and MNIST is out of distribution dataset
 
@@ -90,7 +91,6 @@ for mc_num in range(mc):
     model = DenseNet3(depth=100, num_classes=n_cls, input_channel = C)
     model.to(device)
     model = nn.DataParallel(model)
-    print("Let's use", torch.cuda.device_count(), "GPUs!")
 
     ##load loss function
     NLLWOOD_l = NLLWOOD_Loss_v2.apply
@@ -226,8 +226,7 @@ for mc_num in range(mc):
 
                 if tpr95 >= best_tpr95:
                     best_tpr95 = tpr95
-                    torch.save(model.state_dict(), f'%s/OOD_model_{mc_num}_%s_%s.t7' % (file_root, str(accuracy).split('.')[0], 
-                                                                            str(tpr95).split('.')[1]))
+                    torch.save(model.state_dict(), f'%s/OOD_model_{mc_num}.t7' % file_root)
     
     f.write(f"\n MC Iteration {mc_num} ends.\n")
     tpr95_lst.append(best_tpr95)

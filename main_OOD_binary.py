@@ -241,6 +241,7 @@ f.write(f"\n TPR at 99 TNR: {tpr99_lst}")
 f.write(f"\n TPR at 99 TNR MEAN: {np.mean(tpr99_lst)}")
 mad99 = np.mean(np.abs(np.mean(tpr99_lst) - np.array(tpr99_lst)))
 f.write(f"\n TPR at 99 TNR MAD: {mad99}")
+f.close()
 
 
 

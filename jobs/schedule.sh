@@ -5,7 +5,7 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 
 # Submit jobs
 
-# FashionMNIST Within-Dataset Experiments
+# FashionMNIST Within-Dataset Experiments (DONE)
 # sbatch jobs/fashionmnist/4.sh
 # sbatch jobs/fashionmnist/8.sh
 # sbatch jobs/fashionmnist/16.sh
@@ -18,26 +18,26 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 # sbatch jobs/fashionmnist/2048.sh
 # sbatch jobs/fashionmnist/4096.sh
 
-# CIFAR10-SVHN Between-Dataset Experiments
+# CIFAR10-SVHN Between-Dataset Experiments (DONE)
 # sbatch jobs/cifar10-svhn/4.sh
 # sbatch jobs/cifar10-svhn/8.sh
 # sbatch jobs/cifar10-svhn/16.sh
 # sbatch jobs/cifar10-svhn/32.sh
-sbatch jobs/cifar10-svhn/64.sh
-sbatch jobs/cifar10-svhn/128.sh
-sbatch jobs/cifar10-svhn/256.sh
-sbatch jobs/cifar10-svhn/512.sh
-sbatch jobs/cifar10-svhn/1024.sh
-sbatch jobs/cifar10-svhn/2048.sh
+# sbatch jobs/cifar10-svhn/64.sh
+# sbatch jobs/cifar10-svhn/128.sh
+# sbatch jobs/cifar10-svhn/256.sh
+# sbatch jobs/cifar10-svhn/512.sh
+# sbatch jobs/cifar10-svhn/1024.sh
+# sbatch jobs/cifar10-svhn/2048.sh
 # sbatch jobs/cifar10-svhn/4096.sh
 
 
-#  MNIST-FashionMNIST Between-Dataset Experiments
-# sbatch jobs/mnist-fashionmnist/4.sh
-# sbatch jobs/mnist-fashionmnist/8.sh
-# sbatch jobs/mnist-fashionmnist/16.sh
-# sbatch jobs/mnist-fashionmnist/32.sh
-# sbatch jobs/mnist-fashionmnist/64.sh
+# MNIST-FashionMNIST Between-Dataset Experiments
+sbatch jobs/mnist-fashionmnist/4.sh
+sbatch jobs/mnist-fashionmnist/8.sh
+sbatch jobs/mnist-fashionmnist/16.sh
+sbatch jobs/mnist-fashionmnist/32.sh
+sbatch jobs/mnist-fashionmnist/64.sh
 # sbatch jobs/mnist-fashionmnist/128.sh
 # sbatch jobs/mnist-fashionmnist/256.sh
 # sbatch jobs/mnist-fashionmnist/512.sh
@@ -57,3 +57,17 @@ sbatch jobs/cifar10-svhn/2048.sh
 # sbatch jobs/mnist/1024.sh
 # sbatch jobs/mnist/2048.sh
 # sbatch jobs/mnist/4096.sh
+
+
+# SVHN Within-Dataset Experiments
+sbatch jobs/svhn/4.sh
+sbatch jobs/svhn/8.sh
+sbatch jobs/svhn/16.sh
+sbatch jobs/svhn/32.sh
+sbatch jobs/svhn/64.sh
+# sbatch jobs/svhn/128.sh
+# sbatch jobs/svhn/256.sh
+# sbatch jobs/svhn/512.sh
+# sbatch jobs/svhn/1024.sh
+# sbatch jobs/svhn/2048.sh
+# sbatch jobs/svhn/4096.sh

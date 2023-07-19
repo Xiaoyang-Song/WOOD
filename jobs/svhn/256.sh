@@ -11,4 +11,4 @@
 #SBATCH --time=36:00:00
 #SBATCH --output=/home/xysong/WOOD/slurm-jobs/WDSV256.log
 
-python3 main_OOD_binary.py 0.1 100 60 50 SVHN-07 SVHN-89 3 SVHN256 8
+python3 main_OOD_binary.py 0.1 100 60 50 SVHN-07 SVHN-89 3 SVHN 256 8

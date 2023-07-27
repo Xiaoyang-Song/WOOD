@@ -71,14 +71,17 @@ InD_train_loader, InD_test_loader = data_dic[InD_Dataset](InD_batch_size, test_b
 OOD_train_loader, OOD_test_loader = data_dic[OOD_Dataset](OOD_batch_size, test_batch_size)
 
 
-# Configure Path
-ood_path = os.path.join('..', 'Out-of-Distribution-GANs', 'checkpoint', 'OOD-Sample', EXP_NAME, f"OOD-Balanced-{n_ood}.pt")
+# # Configure Path
+
+ood_path = os.path.join('..', 'Out-of-Distribution-GANs', 'checkpoint', 'OOD-Sample', EXP_NAME, f"OOD-Imbalanced-{n_ood}.pt")
+# ood_path = os.path.join('..', 'Out-of-Distribution-GANs', 'checkpoint', 'OOD-Sample', EXP_NAME, f"OOD-Balanced-{n_ood}.pt")
 ood_img_batch, ood_img_label = torch.load(ood_path)
 ood_data = list(zip(ood_img_batch, ood_img_label))
 
 OOD_train_loader = torch.utils.data.DataLoader(ood_data, batch_size=OOD_batch_size, shuffle=True)
 
-file_root = './runs/' + f"{EXP_NAME}" + f'/{n_ood}/'
+# file_root = './runs/' + f"{EXP_NAME}" + f'/{n_ood}/'
+file_root = './runs/' + f"{EXP_NAME}-R2" + f'/{n_ood}/'
 os.makedirs(file_root, exist_ok=True)
 file_name = file_root + 'log.txt'
 

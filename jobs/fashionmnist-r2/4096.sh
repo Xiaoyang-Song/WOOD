@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --account=sunwbgt0
+#SBATCH --account=jhjin1
 #SBATCH --job-name=WDFM4096
 #SBATCH --mail-user=xysong@umich.edu
 #SBATCH --mail-type=BEGIN,END,FAIL
@@ -9,6 +9,6 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem-per-gpu=16GB
 #SBATCH --time=24:00:00
-#SBATCH --output=/home/xysong/WOOD/slurm-jobs/WDFM4096.log
+#SBATCH --output=/home/xysong/WOOD/slurm-jobs/WDFM4096-R2.log
 
 python3 main_OOD_binary.py 0.1 100 60 50 FashionMNIST-17 FashionMNIST-89 1 FashionMNIST 4096 8

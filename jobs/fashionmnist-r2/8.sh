@@ -9,6 +9,6 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem-per-gpu=16GB
 #SBATCH --time=24:00:00
-#SBATCH --output=/home/xysong/WOOD/slurm-jobs/WDFM8.log
+#SBATCH --output=/home/xysong/WOOD/slurm-jobs/WDFM8-R2.log
 
 python3 main_OOD_binary.py 0.1 100 60 50 FashionMNIST-17 FashionMNIST-89 1 FashionMNIST 8 8

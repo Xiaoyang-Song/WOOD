@@ -73,14 +73,28 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 # sbatch jobs/svhn/4096.sh
 
 # FashionMNIST Within-Dataset Experiments (R2)
-sbatch jobs/fashionmnist-r2/4.sh
-sbatch jobs/fashionmnist-r2/8.sh
-sbatch jobs/fashionmnist-r2/16.sh
-sbatch jobs/fashionmnist-r2/32.sh
-sbatch jobs/fashionmnist-r2/64.sh
-sbatch jobs/fashionmnist-r2/128.sh
-sbatch jobs/fashionmnist-r2/256.sh
-sbatch jobs/fashionmnist-r2/512.sh
-sbatch jobs/fashionmnist-r2/1024.sh
-sbatch jobs/fashionmnist-r2/2048.sh
-sbatch jobs/fashionmnist-r2/4096.sh
+# sbatch jobs/fashionmnist-r2/4.sh
+# sbatch jobs/fashionmnist-r2/8.sh
+# sbatch jobs/fashionmnist-r2/16.sh
+# sbatch jobs/fashionmnist-r2/32.sh
+# sbatch jobs/fashionmnist-r2/64.sh
+# sbatch jobs/fashionmnist-r2/128.sh
+# sbatch jobs/fashionmnist-r2/256.sh
+# sbatch jobs/fashionmnist-r2/512.sh
+# sbatch jobs/fashionmnist-r2/1024.sh
+# sbatch jobs/fashionmnist-r2/2048.sh
+# sbatch jobs/fashionmnist-r2/4096.sh
+
+
+# CIFAR10-SVHN (R2)
+sbatch jobs/cifar10-svhn-r2/4.sh
+sbatch jobs/cifar10-svhn-r2/8.sh
+sbatch jobs/cifar10-svhn-r2/16.sh
+sbatch jobs/cifar10-svhn-r2/32.sh
+sbatch jobs/cifar10-svhn-r2/64.sh
+sbatch jobs/cifar10-svhn-r2/128.sh
+sbatch jobs/cifar10-svhn-r2/256.sh
+sbatch jobs/cifar10-svhn-r2/512.sh
+sbatch jobs/cifar10-svhn-r2/1024.sh
+sbatch jobs/cifar10-svhn-r2/2048.sh
+sbatch jobs/cifar10-svhn-r2/4096.sh

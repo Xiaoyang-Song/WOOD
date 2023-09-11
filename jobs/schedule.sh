@@ -100,14 +100,14 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 # sbatch jobs/cifar10-svhn-r2/4096.sh
 
 # SVHN Within-Dataset Experiments (R2)
-sbatch jobs/svhn-r2/4.sh
-sbatch jobs/svhn-r2/8.sh
-sbatch jobs/svhn-r2/16.sh
-sbatch jobs/svhn-r2/32.sh
-sbatch jobs/svhn-r2/64.sh
-sbatch jobs/svhn-r2/128.sh
-sbatch jobs/svhn-r2/256.sh
-sbatch jobs/svhn-r2/512.sh
-sbatch jobs/svhn-r2/1024.sh
+# sbatch jobs/svhn-r2/4.sh
+# sbatch jobs/svhn-r2/8.sh
+# sbatch jobs/svhn-r2/16.sh
+# sbatch jobs/svhn-r2/32.sh
+# sbatch jobs/svhn-r2/64.sh
+# sbatch jobs/svhn-r2/128.sh
+# sbatch jobs/svhn-r2/256.sh
+# sbatch jobs/svhn-r2/512.sh
+# sbatch jobs/svhn-r2/1024.sh
 sbatch jobs/svhn-r2/2048.sh
-sbatch jobs/svhn-r2/4096.sh
+# sbatch jobs/svhn-r2/4096.sh
